@@ -17,96 +17,99 @@ public class Main {
             System.out.println("4. Delete Task");
             System.out.println("5. Edit Task title");
             System.out.println("6. Exit");
-            System.out.print("choose an option: ");
 
-            int choice;
-            try{
-                choice = scanner.nextInt();
-            }catch (Exception e){
-                System.out.println("Invalid input. Please enter a number. ");
-                scanner.nextLine(); // clear bad input
-                continue;
-            }
 
-            if(choice==1) {
-                scanner.nextLine();// clear leftover input
+            int choice = getValidInt(scanner, "choose an option:");
+
+            if (choice == 1) {// clear leftover input
                 System.out.print("Enter task title:");
                 String title = scanner.nextLine();
 
                 tasks.add(new Task(nextId, title));
                 nextId++;
                 System.out.println("Task added!");
-            }else if (choice == 2){
+            } else if (choice == 2) {
                 System.out.print("\n Your task: ");
                 if (tasks.isEmpty()) {
                     System.out.println("No tasks yet");
-                }else {
-                    for(Task task : tasks){
+                } else {
+                    for (Task task : tasks) {
                         System.out.println(task);
                     }
 
                 }
-            }else if (choice == 3){
-                System.out.println("Enter task ID to mark completed: ");
-                int idToComplete = scanner.nextInt();
+            } else if (choice == 3) {
+                int idToComplete = getValidInt(scanner,"Enter task id to mark completed: " );
 
                 boolean found = false;
-                for(Task task : tasks){
-                    if(task.getId()==idToComplete){
+                for (Task task : tasks) {
+                    if (task.getId() == idToComplete) {
                         task.markCompleted();
                         found = true;
                         break;
                     }
                 }
-                if (found){
+                if (found) {
                     System.out.println("Task marked as completed! ");
-                }else{
+                } else {
                     System.out.println("Task not found");
                 }
-            }else if (choice == 4){
-                System.out.print("Enter the task id to be deleted");
-                int idToDelete = scanner.nextInt();
+            } else if (choice == 4) {
+                int idToDelete = getValidInt(scanner , "Enter task id to be deleted: ");
 
                 Task taskToRemove = null;
-                for(Task task:tasks){
-                    if(task.getId()== idToDelete){
+                for (Task task : tasks) {
+                    if (task.getId() == idToDelete) {
                         taskToRemove = task;
                         break;
                     }
                 }
-                if (taskToRemove != null){
+                if (taskToRemove != null) {
                     tasks.remove(taskToRemove);
                     System.out.println("Task deleted");
-                }else{
+                } else {
                     System.out.println("Task not found");
                 }
-            }else if (choice==5){
-                System.out.println("Enter the task id to edit");
-                int idToEdit = scanner.nextInt();
-                scanner.nextLine();
+            } else if (choice == 5) {
+                int idToEdit = getValidInt(scanner , "Enter the task id to edit: ");
+
 
                 Task taskToEdit = null;
-                for (Task task:tasks){
-                    if(task.getId() == idToEdit){
+                for (Task task : tasks) {
+                    if (task.getId() == idToEdit) {
                         taskToEdit = task;
                         break;
                     }
                 }
-                if(taskToEdit != null){
+                if (taskToEdit != null) {
                     System.out.print("Enter the new title");
                     String newTitle = scanner.nextLine();
                     taskToEdit.setTitle(newTitle);
                     System.out.println("Title updated");
 
-                }else{
+                } else {
                     System.out.println("Title not found");
                 }
-            }else if (choice == 6){
+            } else if (choice == 6) {
                 running = false;
                 System.out.println("GoodBye!");
             }
         }
 
 
+    }
+
+    public static int getValidInt(Scanner scanner, String prompt) {
+        while (true) {
+            System.out.println(prompt);
+            try {
+                int value = scanner.nextInt();
+                scanner.nextLine();
+                return value;
+            } catch (Exception e) {
+                System.out.println("Invalid input. Please enter a number. ");
+                scanner.nextLine();
+            }
+        }
     }
 }
