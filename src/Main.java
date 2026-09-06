@@ -26,6 +26,16 @@ public class Main {
                 tasks.add(new Task(nextId, title));
                 nextId++;
                 System.out.println("Task added!");
+            }else if (choice == 2){
+                System.out.print("\n Your task: ");
+                if (tasks.isEmpty()) {
+                    System.out.println("No tasks yet");
+                }else {
+                    for(Task task : tasks){
+                        System.out.println(task);
+                    }
+
+                }
             }else if (choice == 4){
                 running = false;
                 System.out.println("GoodBye!");
