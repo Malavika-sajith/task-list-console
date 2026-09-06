@@ -15,7 +15,8 @@ public class Main {
             System.out.println("2. View Task");
             System.out.println("3. Mark Task completed");
             System.out.println("4. Delete Task");
-            System.out.println("5. Exit");
+            System.out.println("5. Edit Task title");
+            System.out.println("6. Exit");
             System.out.print("choose an option: ");
 
             int choice = scanner.nextInt();
@@ -71,7 +72,28 @@ public class Main {
                 }else{
                     System.out.println("Task not found");
                 }
-            }else if (choice == 5){
+            }else if (choice==5){
+                System.out.println("Enter the task id to edit");
+                int idToEdit = scanner.nextInt();
+                scanner.nextLine();
+
+                Task taskToEdit = null;
+                for (Task task:tasks){
+                    if(task.getId() == idToEdit){
+                        taskToEdit = task;
+                        break;
+                    }
+                }
+                if(taskToEdit != null){
+                    System.out.print("Enter the new title");
+                    String newTitle = scanner.nextLine();
+                    taskToEdit.setTitle(newTitle);
+                    System.out.println("Title updated");
+
+                }else{
+                    System.out.println("Title not found");
+                }
+            }else if (choice == 6){
                 running = false;
                 System.out.println("GoodBye!");
             }
