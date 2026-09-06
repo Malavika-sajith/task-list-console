@@ -19,7 +19,15 @@ public class Main {
             System.out.println("6. Exit");
             System.out.print("choose an option: ");
 
-            int choice = scanner.nextInt();
+            int choice;
+            try{
+                choice = scanner.nextInt();
+            }catch (Exception e){
+                System.out.println("Invalid input. Please enter a number. ");
+                scanner.nextLine(); // clear bad input
+                continue;
+            }
+
             if(choice==1) {
                 scanner.nextLine();// clear leftover input
                 System.out.print("Enter task title:");
