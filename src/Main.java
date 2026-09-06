@@ -36,6 +36,23 @@ public class Main {
                     }
 
                 }
+            }else if (choice == 3){
+                System.out.println("Enter task ID to mark completed: ");
+                int idToComplete = scanner.nextInt();
+
+                boolean found = false;
+                for(Task task : tasks){
+                    if(task.getId()==idToComplete){
+                        task.markCompleted();
+                        found = true;
+                        break;
+                    }
+                }
+                if (found){
+                    System.out.println("Task marked as completed! ");
+                }else{
+                    System.out.println("Task not found");
+                }
             }else if (choice == 4){
                 running = false;
                 System.out.println("GoodBye!");
