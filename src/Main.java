@@ -14,7 +14,8 @@ public class Main {
             System.out.println("1. Add Task");
             System.out.println("2. View Task");
             System.out.println("3. Mark Task completed");
-            System.out.println("4. Exit");
+            System.out.println("4. Delete Task");
+            System.out.println("5. Exit");
             System.out.print("choose an option: ");
 
             int choice = scanner.nextInt();
@@ -54,6 +55,23 @@ public class Main {
                     System.out.println("Task not found");
                 }
             }else if (choice == 4){
+                System.out.print("Enter the task id to be deleted");
+                int idToDelete = scanner.nextInt();
+
+                Task taskToRemove = null;
+                for(Task task:tasks){
+                    if(task.getId()== idToDelete){
+                        taskToRemove = task;
+                        break;
+                    }
+                }
+                if (taskToRemove != null){
+                    tasks.remove(taskToRemove);
+                    System.out.println("Task deleted");
+                }else{
+                    System.out.println("Task not found");
+                }
+            }else if (choice == 5){
                 running = false;
                 System.out.println("GoodBye!");
             }
